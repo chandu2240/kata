@@ -16,6 +16,7 @@ class FizzBuzz extends React.Component {
     
     _handleChange = (e) => {
         this.setState({maxFizzBuzzNo: e.target.value});
+        this.props.setFizzBuzzList([]);
     }
 
     _onSubmit = (e) => {
