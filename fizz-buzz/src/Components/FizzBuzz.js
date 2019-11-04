@@ -1,6 +1,7 @@
 import React from 'react';
 import {FizzBuzzConstants} from '../Constants/AppConstants'
 import FizzBuzzList from './FizzBuzzList';
+import PropTypes from 'prop-types';
 
 class FizzBuzz extends React.Component {
     constructor(props){
@@ -8,13 +9,20 @@ class FizzBuzz extends React.Component {
         this.state = {};
     }
 
+    static propTypes = {
+        setFizzBuzzList: PropTypes.func.isRequired,
+        list: PropTypes.array.isRequired
+     };
+    
     _handleChange = (e) => {
         this.setState({maxFizzBuzzNo: e.target.value});
     }
 
     _onSubmit = (e) => {
         e.preventDefault();
-        this._doFizzBuzz(this.state.maxFizzBuzzNo)
+        let fizzBuzzList = this._doFizzBuzz(this.state.maxFizzBuzzNo)
+        this.props.setFizzBuzzList(fizzBuzzList);
+        console.log(this.props);
     }
 
     _doFizzBuzz = (maxFizzBuzzNo) => {
@@ -52,7 +60,7 @@ class FizzBuzz extends React.Component {
                     />
                     <input type='submit' value={FizzBuzzConstants.SUBMIT} />
                 </form>
-                <FizzBuzzList list={this.props.FizzBuzzList} />
+                <FizzBuzzList list={this.props.list} />
           </div>
         );
     }

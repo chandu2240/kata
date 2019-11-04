@@ -5,6 +5,7 @@ import App from './App';
 describe('Fizz buzz app', () => {
     let wrapper = shallow(<App />);
     it('should render fizzbuzz component', () => {
-        expect(wrapper.find('FizzBuzz').length).toEqual(1);
+        debugger;
+        expect(wrapper.props().children[1].type.displayName).toBe('Connect(FizzBuzz)');
     });
 });
