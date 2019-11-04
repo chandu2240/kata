@@ -12,3 +12,5 @@ export const FizzBuzzConstants = {
         'FIZZBUZZ': 'FIZZBUZZ'
     }
 }
+
+export const SET_FIZZ_BUZZ_LIST = 'SET_FIZZ_BUZZ_LIST';
