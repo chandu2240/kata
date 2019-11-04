@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {shallow} from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('Leap year app', () => {;
+  let wrapper = shallow(<App />);
+  it("App should render the Leap year component", () => {
+    expect(wrapper.find("LeapYearForm").length).toEqual(1)
+  });
 });
