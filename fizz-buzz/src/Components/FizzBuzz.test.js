@@ -22,4 +22,8 @@ describe('FizzBuzz', () => {
         expect(fizzBuzzList[7].val).toEqual(8);
     });
 
+    it('should render a fizzbuzzlist component', () => {
+		expect(wrapper.find('FizzBuzzList').length).toEqual(1);
+    });
+
 });

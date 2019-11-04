@@ -1,5 +1,6 @@
 import React from 'react';
 import {FizzBuzzConstants} from '../Constants/AppConstants'
+import FizzBuzzList from './FizzBuzzList';
 
 class FizzBuzz extends React.Component {
     constructor(props){
@@ -34,22 +35,25 @@ class FizzBuzz extends React.Component {
 
     render(){
         return (
-            <form className="fizz-buzz-input-form" onSubmit={this._onSubmit}>
-                <label htmlFor="maxFizzBuzz">
-                {FizzBuzzConstants.MAX_FIZZ_BUZZ_LABEL}
-                </label>
-                <br />
-                <input
-                    id="maxFizzBuzz"
-                    type="number"
-                    min={FizzBuzzConstants.MIN_FIZZ_BUZZ_INPUT}
-                    className="max-fizz-buzz-input"
-                    autoFocus={true}
-                    value={this.state.maxFizzBuzzNo}
-                    onChange = {this._handleChange}
-                />
-                <input type='submit' value={FizzBuzzConstants.SUBMIT} />
-          </form>
+            <div className='fizz-buzz-form-container'>
+                <form className="fizz-buzz-input-form" onSubmit={this._onSubmit}>
+                    <label htmlFor="maxFizzBuzz">
+                    {FizzBuzzConstants.MAX_FIZZ_BUZZ_LABEL}
+                    </label>
+                    <br />
+                    <input
+                        id="maxFizzBuzz"
+                        type="number"
+                        min={FizzBuzzConstants.MIN_FIZZ_BUZZ_INPUT}
+                        className="max-fizz-buzz-input"
+                        autoFocus={true}
+                        value={this.state.maxFizzBuzzNo}
+                        onChange = {this._handleChange}
+                    />
+                    <input type='submit' value={FizzBuzzConstants.SUBMIT} />
+                </form>
+                <FizzBuzzList list={this.props.FizzBuzzList} />
+          </div>
         );
     }
 }
