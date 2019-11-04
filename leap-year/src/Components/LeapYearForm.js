@@ -8,7 +8,8 @@ class LeapYearForm extends React.Component {
 
     onChange = (e) => {
         this.setState({
-            year: e.target.value
+            year: e.target.value,
+            bLeapYear: undefined
         });
     }
 
@@ -26,7 +27,7 @@ class LeapYearForm extends React.Component {
     }
 
     render(){
-        return <div>
+        return <div className='leap-year-form-container'>
             <form onSubmit={this.onSubmit}>
                 <label htmlFor='leapYearInput'>{LeapYearFormConstants.LEAP_YEAR_INPUT_LABEL}</label>
                 <input type='number' min={LeapYearFormConstants.MIN_YEAR} value={this.state.year} onChange={this.onChange}/>
