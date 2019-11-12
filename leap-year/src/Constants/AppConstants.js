@@ -9,5 +9,6 @@ export const LeapYearFormConstants = {
     HUNDRED: 100,
     FOUR_HUNDRED: 400,
     NOT_LEAP_YEAR_MESSAGE: 'It is not a leap Year',
-    LEAP_YEAR_MESSAGE: 'It is a leap year'
+    LEAP_YEAR_MESSAGE: 'It is a leap year',
+    YEAR_INPUT_ERROR: 'Please enter valid year'
 }

@@ -26,3 +26,7 @@
 .not-leap-year-message{
   color: #FF0000;
 }
+.input-error{
+  margin-left: 3.8rem;
+  color: #FF0000;
+}

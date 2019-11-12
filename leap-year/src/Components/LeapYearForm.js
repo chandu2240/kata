@@ -3,21 +3,49 @@ import {LeapYearFormConstants} from '../Constants/AppConstants';
 class LeapYearForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            errorMessage: null
+        };
     }
 
     onChange = (e) => {
-        this.setState({
-            year: e.target.value,
-            bLeapYear: undefined
-        });
+        if(this._validateInput(e.target.value)){
+            this.setState({
+                year: e.target.value,
+                isLeapYear: undefined,
+                errorMessage: null
+            });
+        }
+        else if(e.target.value){
+            //e.target.value = "";
+            this.setState({
+                year: e.target.value, 
+                isLeapYear: undefined, 
+                errorMessage: LeapYearFormConstants.YEAR_INPUT_ERROR
+            });
+        }
+        else{
+            this.setState({
+                year: undefined, 
+                isLeapYear: undefined, 
+                errorMessage: null
+            });
+        }
+    }
+    _validateInput = (input) => {
+        //validation: input is number or not
+        if(isNaN(input)){
+            return false;
+        }
+        //validation: input should greater than 0
+        return  (input > 0);
     }
 
     onSubmit = (e) => {
         e.preventDefault();
         let year = this.state.year;
         this.setState({
-            bLeapYear: this._isLeapYear(year)
+            isLeapYear: this._isLeapYear(year)
         });
     }
 
@@ -30,12 +58,13 @@ class LeapYearForm extends React.Component {
         return <div className='leap-year-form-container'>
             <form onSubmit={this.onSubmit}>
                 <label htmlFor='leapYearInput'>{LeapYearFormConstants.LEAP_YEAR_INPUT_LABEL}</label>
-                <input type='number' min={LeapYearFormConstants.MIN_YEAR} value={this.state.year} onChange={this.onChange}/>
-                <input type='submit' value={LeapYearFormConstants.SUBMIT_LABEL} />
+                <input type='text' value={this.state.year} onChange={this.onChange} />
+                <input type='submit' value={LeapYearFormConstants.SUBMIT_LABEL} disabled={this.state.errorMessage || !this.state.year}/>
+                {this.state.errorMessage ? <div className='input-error'>{this.state.errorMessage}</div> : null}
             </form>
             {
-                (typeof this.state.bLeapYear !== 'undefined') 
-                    ? (!this.state.bLeapYear 
+                (typeof this.state.isLeapYear !== 'undefined') 
+                    ? (!this.state.isLeapYear 
                         ? (<h2 className='not-leap-year-message'> {LeapYearFormConstants.NOT_LEAP_YEAR_MESSAGE}</h2>) 
                         : (<h2 className='leap-year-message'>{LeapYearFormConstants.LEAP_YEAR_MESSAGE}</h2>)) 
                     : null
